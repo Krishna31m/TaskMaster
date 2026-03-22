@@ -34,11 +34,14 @@
         android:layout_height="wrap_content"
         android:hint="Alarm Label"
         app:startIconDrawable="@drawable/ic_label"
-        app:startIconTint="@color/accent">
+        app:startIconTint="@color/accent"
+        app:hintTextColor="@color/text_secondary"
+        android:textColorHint="@color/text_hint">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_label"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/text_primary"
             android:inputType="textCapSentences"
             android:imeOptions="actionNext" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -52,11 +55,14 @@
         android:hint="Time"
         android:layout_marginTop="16dp"
         app:startIconDrawable="@drawable/ic_clock"
-        app:startIconTint="@color/accent">
+        app:startIconTint="@color/accent"
+        app:hintTextColor="@color/text_secondary"
+        android:textColorHint="@color/text_hint">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/text_primary"
             android:focusable="false"
             android:clickable="true"
             android:cursorVisible="false" />
@@ -89,10 +95,10 @@
             android:layout_marginHorizontal="3dp"
             android:text="Sun"
             android:textSize="12sp"
+            android:textColor="@color/text_primary"
             app:chipBackgroundColor="@color/chip_day_selector"
             app:checkedIconVisible="false"
             app:chipStrokeWidth="1.5dp"
-
             app:chipCornerRadius="20dp" />
 
         <com.google.android.material.chip.Chip
@@ -104,10 +110,10 @@
             android:layout_marginHorizontal="3dp"
             android:text="Mon"
             android:textSize="12sp"
+            android:textColor="@color/text_primary"
             app:chipBackgroundColor="@color/chip_day_selector"
             app:checkedIconVisible="false"
             app:chipStrokeWidth="1.5dp"
-
             app:chipCornerRadius="20dp" />
 
         <com.google.android.material.chip.Chip
@@ -119,10 +125,10 @@
             android:layout_marginHorizontal="3dp"
             android:text="Tue"
             android:textSize="12sp"
+            android:textColor="@color/text_primary"
             app:chipBackgroundColor="@color/chip_day_selector"
             app:checkedIconVisible="false"
             app:chipStrokeWidth="1.5dp"
-
             app:chipCornerRadius="20dp" />
 
         <com.google.android.material.chip.Chip
@@ -134,6 +140,7 @@
             android:layout_marginHorizontal="3dp"
             android:text="Wed"
             android:textSize="12sp"
+            android:textColor="@color/text_primary"
             app:chipBackgroundColor="@color/chip_day_selector"
             app:checkedIconVisible="false"
             app:chipStrokeWidth="1.5dp"
@@ -157,6 +164,7 @@
             android:layout_marginHorizontal="3dp"
             android:text="Thu"
             android:textSize="12sp"
+            android:textColor="@color/text_primary"
             app:chipBackgroundColor="@color/chip_day_selector"
             app:checkedIconVisible="false"
             app:chipStrokeWidth="1.5dp"
@@ -171,6 +179,7 @@
             android:layout_marginHorizontal="3dp"
             android:text="Fri"
             android:textSize="12sp"
+            android:textColor="@color/text_primary"
             app:chipBackgroundColor="@color/chip_day_selector"
             app:checkedIconVisible="false"
             app:chipStrokeWidth="1.5dp"
@@ -185,6 +194,7 @@
             android:layout_marginHorizontal="3dp"
             android:text="Sat"
             android:textSize="12sp"
+            android:textColor="@color/text_primary"
             app:chipBackgroundColor="@color/chip_day_selector"
             app:checkedIconVisible="false"
             app:chipStrokeWidth="1.5dp"
@@ -206,6 +216,7 @@
         android:layout_height="44dp"
         android:text="📅  Everyday"
         android:textSize="13sp"
+        android:textColor="@color/text_primary"
         android:gravity="center"
         app:chipBackgroundColor="@color/chip_day_selector"
         app:checkedIconVisible="false"

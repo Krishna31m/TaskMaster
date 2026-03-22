@@ -27,47 +27,36 @@ class AlarmReceiver : BroadcastReceiver() {
         val action = intent.action
         Log.d(TAG, "onReceive: action = $action")
 
-        // 1. Handle Boot Completed
         if (action == Intent.ACTION_BOOT_COMPLETED || action == "android.intent.action.QUICKBOOT_POWERON") {
-            // Here you would typically reschedule alarms from Firestore if needed.
-            // For now, we just return to avoid triggering the ring screen on boot.
             return
         }
 
-        // 2. Security Check: Only trigger if a user is logged in
         val auth = FirebaseAuth.getInstance()
         if (auth.currentUser == null) {
-            Log.w(TAG, "No user logged in. Ignoring alarm.")
             return
         }
 
-        // 3. Trigger Alarm Logic
-        // We expect EXTRA_ALARM_ID to be present for a valid alarm trigger.
         val alarmId = intent.getStringExtra(EXTRA_ALARM_ID)
         if (alarmId == null) {
-            Log.w(TAG, "Received alarm intent without alarmId. Ignoring.")
             return
         }
 
         val label = intent.getStringExtra(EXTRA_ALARM_LABEL) ?: "Alarm"
         val isTask = intent.getBooleanExtra(EXTRA_IS_TASK, false)
 
-        // Launch full-screen alarm ring activity
         val ringIntent = Intent(context, AlarmRingActivity::class.java).apply {
             putExtra(AlarmRingActivity.EXTRA_ALARM_ID, alarmId)
             putExtra(AlarmRingActivity.EXTRA_ALARM_LABEL, label)
-            addFlags(
-                Intent.FLAG_ACTIVITY_NEW_TASK or
-                Intent.FLAG_ACTIVITY_CLEAR_TOP or
-                Intent.FLAG_ACTIVITY_SINGLE_TOP
-            )
+            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
         }
 
-        // Create notification channel
         createNotificationChannel(context)
 
+        // Important: Use FLAG_IMMUTABLE and ensure request code is unique
         val pendingIntent = PendingIntent.getActivity(
-            context, alarmId.hashCode(), ringIntent,
+            context, 
+            alarmId.hashCode(), 
+            ringIntent,
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
 
@@ -77,16 +66,22 @@ class AlarmReceiver : BroadcastReceiver() {
             .setContentText(label)
             .setPriority(NotificationCompat.PRIORITY_MAX)
             .setCategory(NotificationCompat.CATEGORY_ALARM)
-            .setAutoCancel(true)
-            .setFullScreenIntent(pendingIntent, true)
+            .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+            .setOngoing(true)
+            .setAutoCancel(false) // User must dismiss via activity
+            .setFullScreenIntent(pendingIntent, true) // This is the key for physical devices
             .setContentIntent(pendingIntent)
             .build()
 
         val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         notificationManager.notify(alarmId.hashCode(), notification)
 
-        // Also start activity directly
-        context.startActivity(ringIntent)
+        // Force start activity as a fallback for background starts
+        try {
+            context.startActivity(ringIntent)
+        } catch (e: Exception) {
+            Log.e(TAG, "Failed to start activity directly: ${e.message}")
+        }
     }
 
     private fun createNotificationChannel(context: Context) {
@@ -99,6 +94,8 @@ class AlarmReceiver : BroadcastReceiver() {
                 description = "Alarm and task reminder notifications"
                 enableVibration(true)
                 enableLights(true)
+                setBypassDnd(true) // Allow breaking through Do Not Disturb
+                lockscreenVisibility = android.app.Notification.VISIBILITY_PUBLIC
             }
             val nm = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             nm.createNotificationChannel(channel)
