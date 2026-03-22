@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary Colors -->
+    <color name="primary">#6C63FF</color>
+    <color name="primary_dark">#4A41CC</color>
+    <color name="primary_light">#9C94FF</color>
+    <color name="accent">#FF6584</color>
+    <color name="accent_light">#FF8FA5</color>
+
+    <!-- Background Colors -->
+    <color name="background">#F8F7FF</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="card_bg">#FFFFFF</color>
+
+    <!-- Text Colors -->
+    <color name="text_primary">#1A1A2E</color>
+    <color name="text_secondary">#6B6B8A</color>
+    <color name="text_hint">#ABABC4</color>
+    <color name="text_white">#FFFFFF</color>
+
+    <!-- Status Colors -->
+    <color name="success">#4CAF50</color>
+    <color name="warning">#FF9800</color>
+    <color name="error">#F44336</color>
+    <color name="info">#2196F3</color>
+
+    <!-- Priority Colors -->
+    <color name="priority_high">#F44336</color>
+    <color name="priority_medium">#FF9800</color>
+    <color name="priority_low">#4CAF50</color>
+
+    <!-- Note Colors -->
+    <color name="note_color_1">#FFE4E1</color>
+    <color name="note_color_2">#E1F5FE</color>
+    <color name="note_color_3">#F3E5F5</color>
+    <color name="note_color_4">#E8F5E9</color>
+    <color name="note_color_5">#FFF8E1</color>
+    <color name="note_color_6">#FCE4EC</color>
+
+    <!-- Misc -->
+    <color name="divider">#E8E8F0</color>
+    <color name="ripple">#1A6C63FF</color>
+    <color name="shadow">#1A000000</color>
+    <color name="overlay">#80000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="transparent">#00000000</color>
+    <color name="splash_bg">#6C63FF</color>
+</resources>

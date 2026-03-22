@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Background circle -->
+    <path
+        android:fillColor="#6C63FF"
+        android:pathData="M54,54m-54,0a54,54 0,1 1,108 0a54,54 0,1 1,-108 0" />
+
+    <!-- Checkmark / task icon - white -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M30,40 L48,40 Q50,40 50,42 L50,66 Q50,68 48,68 L30,68 Q28,68 28,66 L28,42 Q28,40 30,40Z" />
+
+    <!-- Lines on notepad -->
+    <path
+        android:fillColor="#6C63FF"
+        android:strokeColor="#6C63FF"
+        android:pathData="M33,50 L47,50"
+        android:strokeWidth="2"
+        android:strokeLineCap="round" />
+    <path
+        android:fillColor="#6C63FF"
+        android:strokeColor="#6C63FF"
+        android:pathData="M33,55 L47,55"
+        android:strokeWidth="2"
+        android:strokeLineCap="round" />
+    <path
+        android:fillColor="#6C63FF"
+        android:strokeColor="#6C63FF"
+        android:pathData="M33,60 L42,60"
+        android:strokeWidth="2"
+        android:strokeLineCap="round" />
+
+    <!-- Checkmark badge circle -->
+    <path
+        android:fillColor="#FF6584"
+        android:pathData="M66,56m-14,0a14,14 0,1 1,28 0a14,14 0,1 1,-28 0" />
+
+    <!-- Check inside badge -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:strokeColor="#FFFFFF"
+        android:pathData="M59,56 L63,61 L73,51"
+        android:strokeWidth="2.5"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+
+</vector>

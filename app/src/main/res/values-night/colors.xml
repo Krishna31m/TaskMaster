@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary Colors -->
+    <color name="primary">#7E74FF</color>
+    <color name="primary_dark">#6C63FF</color>
+    <color name="primary_light">#9C94FF</color>
+    <color name="accent">#FF8FA5</color>
+    <color name="accent_light">#FFB3C2</color>
+
+    <!-- Background Colors -->
+    <color name="background">#121212</color>
+    <color name="surface">#1E1E1E</color>
+    <color name="card_bg">#252525</color>
+
+    <!-- Text Colors -->
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#D1D1E0</color>
+    <color name="text_hint">#9E9EAE</color>
+    <color name="text_white">#FFFFFF</color>
+
+    <!-- Status Colors -->
+    <color name="success">#81C784</color>
+    <color name="warning">#FFB74D</color>
+    <color name="error">#E57373</color>
+    <color name="info">#64B5F6</color>
+
+    <!-- Note Colors (Subtle/Desaturated for Dark Mode) -->
+    <color name="note_color_1">#3E2723</color> <!-- Dark Brown -->
+    <color name="note_color_2">#1A237E</color> <!-- Dark Blue -->
+    <color name="note_color_3">#4A148C</color> <!-- Dark Purple -->
+    <color name="note_color_4">#1B5E20</color> <!-- Dark Green -->
+    <color name="note_color_5">#332701</color> <!-- Dark Yellow/Amber -->
+    <color name="note_color_6">#880E4F</color> <!-- Dark Pink -->
+
+    <!-- Misc -->
+    <color name="divider">#333333</color>
+    <color name="ripple">#407E74FF</color>
+    <color name="shadow">#66000000</color>
+    <color name="overlay">#B3000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="splash_bg">#121212</color>
+</resources>
