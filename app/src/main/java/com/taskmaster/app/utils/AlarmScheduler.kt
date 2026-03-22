@@ -5,9 +5,12 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Build
+import android.util.Log
 import com.taskmaster.app.receivers.AlarmReceiver
 
 object AlarmScheduler {
+
+    private const val TAG = "AlarmScheduler"
 
     /**
      * Schedule a standalone alarm (from AlarmActivity).
@@ -35,6 +38,13 @@ object AlarmScheduler {
     }
 
     private fun schedule(context: Context, requestCode: Int, intent: Intent, triggerAtMillis: Long) {
+        // SAFETY: If the time is in the past, don't schedule it. 
+        // This prevents immediate triggering on app launch for old alarms.
+        if (triggerAtMillis <= System.currentTimeMillis()) {
+            Log.w(TAG, "Attempted to schedule alarm in the past. Ignoring.")
+            return
+        }
+
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val pendingIntent = PendingIntent.getBroadcast(
             context,
@@ -43,21 +53,27 @@ object AlarmScheduler {
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
 
-        when {
-            Build.VERSION.SDK_INT >= Build.VERSION_CODES.M -> {
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 alarmManager.setExactAndAllowWhileIdle(
                     AlarmManager.RTC_WAKEUP,
                     triggerAtMillis,
                     pendingIntent
                 )
-            }
-            else -> {
+            } else {
                 alarmManager.setExact(
                     AlarmManager.RTC_WAKEUP,
                     triggerAtMillis,
                     pendingIntent
                 )
             }
+        } catch (e: SecurityException) {
+            // For Android 12+, we need SCHEDULE_EXACT_ALARM permission
+            alarmManager.set(
+                AlarmManager.RTC_WAKEUP,
+                triggerAtMillis,
+                pendingIntent
+            )
         }
     }
 

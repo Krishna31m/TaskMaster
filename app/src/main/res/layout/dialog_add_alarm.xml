@@ -16,6 +16,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="20dp" />
 
+    <!-- Title -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -42,77 +43,193 @@
             android:imeOptions="actionNext" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Time Picker row -->
+    <!-- Time Picker -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_time"
+        style="@style/InputStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Time"
+        android:layout_marginTop="16dp"
+        app:startIconDrawable="@drawable/ic_clock"
+        app:startIconTint="@color/accent">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:clickable="true"
+            android:cursorVisible="false" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Repeat Days Label -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Repeat on"
+        android:textColor="@color/text_secondary"
+        android:textSize="13sp"
+        android:letterSpacing="0.05"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="12dp" />
+
+    <!-- Row 1: Sun Mon Tue Wed -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="16dp">
+        android:layout_marginBottom="10dp">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_date"
-            style="@style/InputStyle"
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_sun"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_weight="1"
-            android:hint="Date"
-            android:layout_marginEnd="8dp"
-            app:startIconDrawable="@drawable/ic_calendar"
-            app:startIconTint="@color/accent">
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_date"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:focusable="false"
-                android:clickable="true"
-                android:cursorVisible="false" />
-        </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginHorizontal="3dp"
+            android:text="Sun"
+            android:textSize="12sp"
+            app:chipBackgroundColor="@color/chip_day_selector"
+            app:checkedIconVisible="false"
+            app:chipStrokeWidth="1.5dp"
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_time"
-            style="@style/InputStyle"
+            app:chipCornerRadius="20dp" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_mon"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_weight="1"
-            android:hint="Time"
-            android:layout_marginStart="8dp"
-            app:startIconDrawable="@drawable/ic_clock"
-            app:startIconTint="@color/accent">
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_time"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:focusable="false"
-                android:clickable="true"
-                android:cursorVisible="false" />
-        </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginHorizontal="3dp"
+            android:text="Mon"
+            android:textSize="12sp"
+            app:chipBackgroundColor="@color/chip_day_selector"
+            app:checkedIconVisible="false"
+            app:chipStrokeWidth="1.5dp"
+
+            app:chipCornerRadius="20dp" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_tue"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="3dp"
+            android:text="Tue"
+            android:textSize="12sp"
+            app:chipBackgroundColor="@color/chip_day_selector"
+            app:checkedIconVisible="false"
+            app:chipStrokeWidth="1.5dp"
+
+            app:chipCornerRadius="20dp" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_wed"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="3dp"
+            android:text="Wed"
+            android:textSize="12sp"
+            app:chipBackgroundColor="@color/chip_day_selector"
+            app:checkedIconVisible="false"
+            app:chipStrokeWidth="1.5dp"
+            app:chipCornerRadius="20dp" />
 
     </LinearLayout>
 
-    <!-- Repeat -->
+    <!-- Row 2: Thu Fri Sat + spacer -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:layout_marginTop="16dp">
+        android:layout_marginBottom="10dp">
 
-        <TextView
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_thu"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_weight="1"
-            android:text="Repeat"
-            android:textColor="@color/text_primary"
-            android:textSize="15sp" />
+            android:layout_marginHorizontal="3dp"
+            android:text="Thu"
+            android:textSize="12sp"
+            app:chipBackgroundColor="@color/chip_day_selector"
+            app:checkedIconVisible="false"
+            app:chipStrokeWidth="1.5dp"
+            app:chipCornerRadius="20dp" />
 
-        <com.google.android.material.switchmaterial.SwitchMaterial
-            android:id="@+id/switch_repeat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:thumbTint="@color/accent"
-            android:trackTint="@color/accent" />
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_fri"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="3dp"
+            android:text="Fri"
+            android:textSize="12sp"
+            app:chipBackgroundColor="@color/chip_day_selector"
+            app:checkedIconVisible="false"
+            app:chipStrokeWidth="1.5dp"
+            app:chipCornerRadius="20dp" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_sat"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="3dp"
+            android:text="Sat"
+            android:textSize="12sp"
+            app:chipBackgroundColor="@color/chip_day_selector"
+            app:checkedIconVisible="false"
+            app:chipStrokeWidth="1.5dp"
+            app:chipCornerRadius="20dp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="3dp" />
 
     </LinearLayout>
+
+    <!-- Everyday — full width pill -->
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip_everyday"
+        style="@style/Widget.MaterialComponents.Chip.Choice"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:text="📅  Everyday"
+        android:textSize="13sp"
+        android:gravity="center"
+        app:chipBackgroundColor="@color/chip_day_selector"
+        app:checkedIconVisible="false"
+        app:chipStrokeWidth="1.5dp"
+        app:chipCornerRadius="22dp"
+        android:layout_marginTop="4dp" />
+
+    <!-- Summary text -->
+    <TextView
+        android:id="@+id/tv_days_summary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No days selected"
+        android:textColor="@color/accent"
+        android:textSize="12sp"
+        android:layout_marginTop="12dp"
+        android:layout_gravity="center_horizontal" />
+
+    <!-- Divider -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/divider"
+        android:layout_marginTop="20dp" />
 
     <!-- Save Button -->
     <com.google.android.material.button.MaterialButton
@@ -123,7 +240,7 @@
         android:textColor="@color/white"
         app:backgroundTint="@color/accent"
         app:cornerRadius="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:paddingVertical="14dp" />
 
 </LinearLayout>

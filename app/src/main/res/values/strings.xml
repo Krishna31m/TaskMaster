@@ -20,7 +20,7 @@
     <string name="back_to_login">Back to Login</string>
 
     <!-- Google Sign-In (Placeholder - replace with your actual Web Client ID from Firebase Console) -->
-    <string name="default_web_client_id" translatable="false">YOUR_WEB_CLIENT_ID_HERE</string>
+    <string name="default_web_client_id" translatable="false">574357915220-6nposc5q8uofhk7u3f526ougmrcgfeb6.apps.googleusercontent.com</string>
 
     <!-- Dashboard -->
     <string name="welcome_back">Welcome back,</string>

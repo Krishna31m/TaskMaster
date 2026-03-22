@@ -7,13 +7,16 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.os.Build
+import android.util.Log
 import androidx.core.app.NotificationCompat
+import com.google.firebase.auth.FirebaseAuth
 import com.taskmaster.app.R
 import com.taskmaster.app.activities.AlarmRingActivity
 
 class AlarmReceiver : BroadcastReceiver() {
 
     companion object {
+        private const val TAG = "AlarmReceiver"
         const val CHANNEL_ID = "taskmaster_alarm_channel"
         const val EXTRA_ALARM_ID = "alarm_id"
         const val EXTRA_ALARM_LABEL = "alarm_label"
@@ -21,7 +24,31 @@ class AlarmReceiver : BroadcastReceiver() {
     }
 
     override fun onReceive(context: Context, intent: Intent) {
-        val alarmId = intent.getStringExtra(EXTRA_ALARM_ID) ?: ""
+        val action = intent.action
+        Log.d(TAG, "onReceive: action = $action")
+
+        // 1. Handle Boot Completed
+        if (action == Intent.ACTION_BOOT_COMPLETED || action == "android.intent.action.QUICKBOOT_POWERON") {
+            // Here you would typically reschedule alarms from Firestore if needed.
+            // For now, we just return to avoid triggering the ring screen on boot.
+            return
+        }
+
+        // 2. Security Check: Only trigger if a user is logged in
+        val auth = FirebaseAuth.getInstance()
+        if (auth.currentUser == null) {
+            Log.w(TAG, "No user logged in. Ignoring alarm.")
+            return
+        }
+
+        // 3. Trigger Alarm Logic
+        // We expect EXTRA_ALARM_ID to be present for a valid alarm trigger.
+        val alarmId = intent.getStringExtra(EXTRA_ALARM_ID)
+        if (alarmId == null) {
+            Log.w(TAG, "Received alarm intent without alarmId. Ignoring.")
+            return
+        }
+
         val label = intent.getStringExtra(EXTRA_ALARM_LABEL) ?: "Alarm"
         val isTask = intent.getBooleanExtra(EXTRA_IS_TASK, false)
 

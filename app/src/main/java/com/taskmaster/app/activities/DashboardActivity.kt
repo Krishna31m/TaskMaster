@@ -14,6 +14,8 @@ import com.taskmaster.app.R
 import com.taskmaster.app.adapters.TaskAdapter
 import com.taskmaster.app.databinding.ActivityDashboardBinding
 import com.taskmaster.app.models.Task
+import com.taskmaster.app.models.Alarm
+import com.taskmaster.app.utils.AlarmScheduler
 import com.taskmaster.app.utils.showToast
 import java.text.SimpleDateFormat
 import java.util.*
@@ -194,15 +196,45 @@ class DashboardActivity : AppCompatActivity() {
     private fun showLogoutDialog() {
         androidx.appcompat.app.AlertDialog.Builder(this)
             .setTitle("Logout")
-            .setMessage("Are you sure you want to logout?")
+            .setMessage("Are you sure you want to logout? This will also clear all scheduled alarms from this device.")
             .setPositiveButton("Logout") { _, _ ->
-                auth.signOut()
-                startActivity(Intent(this, LoginActivity::class.java).apply {
-                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                })
+                clearAllAlarmsAndSignOut()
             }
             .setNegativeButton("Cancel", null)
             .show()
+    }
+
+    private fun clearAllAlarmsAndSignOut() {
+        val userId = auth.currentUser?.uid ?: return
+        
+        // Fetch all alarms to cancel them in AlarmManager
+        db.collection("alarms").whereEqualTo("userId", userId).get()
+            .addOnSuccessListener { snapshot ->
+                snapshot.documents.forEach { doc ->
+                    val alarmId = doc.id
+                    listOf(Calendar.SUNDAY, Calendar.MONDAY, Calendar.TUESDAY,
+                        Calendar.WEDNESDAY, Calendar.THURSDAY, Calendar.FRIDAY, Calendar.SATURDAY)
+                        .forEach { day ->
+                            AlarmScheduler.cancelAlarm(this, "${alarmId}_$day".hashCode())
+                        }
+                }
+                // Also tasks
+                db.collection("tasks").whereEqualTo("userId", userId).get().addOnSuccessListener { tSnap ->
+                    tSnap.documents.forEach { tDoc ->
+                        AlarmScheduler.cancelAlarm(this, "task_${tDoc.id}".hashCode())
+                    }
+                    performSignOut()
+                }.addOnFailureListener { performSignOut() }
+            }
+            .addOnFailureListener { performSignOut() }
+    }
+
+    private fun performSignOut() {
+        auth.signOut()
+        startActivity(Intent(this, LoginActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        })
+        finish()
     }
 
     override fun onDestroy() {
