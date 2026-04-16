@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.taskmaster.app"
+    namespace = "com.taskmaster.mkrishna"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.taskmaster.app"
+        applicationId = "com.taskmaster.mkrishna"
         minSdk = 24
         targetSdk = 36
         versionCode = 1

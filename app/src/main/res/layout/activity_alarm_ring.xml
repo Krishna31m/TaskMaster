@@ -20,7 +20,7 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:src="@drawable/ic_alarm"
-        android:tint="@color/white"
+        app:tint="@color/white"
         app:layout_constraintTop_toTopOf="@id/circle_pulse_3"
         app:layout_constraintBottom_toBottomOf="@id/circle_pulse_3"
         app:layout_constraintStart_toStartOf="parent"

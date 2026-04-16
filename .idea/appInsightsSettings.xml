@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="com.taskmaster.app" />
-                  <option name="mobileSdkAppId" value="1:574357915220:android:b0119d31ebb0deb07d8fc1" />
-                  <option name="projectId" value="taskmaster-e9426" />
-                  <option name="projectNumber" value="574357915220" />
+                  <option name="appId" value="com.taskmaster.mkrishna" />
+                  <option name="mobileSdkAppId" value="1:915707384748:android:771665f6f93d4d38b1e009" />
+                  <option name="projectId" value="taskmaster-1d7b2" />
+                  <option name="projectNumber" value="915707384748" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
